@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Pollinator</string>
+    <string name="pollinate">Pollinate!</string>
+    <string name="clear">Clear</string>
+</resources>
