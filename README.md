@@ -10,6 +10,18 @@
 
 By using **Pollinator**, you agree to abide by Pollinations AI's [Terms of Use](https://pollinations.ai/terms). Please review these terms carefully before using the app, as they govern your use of the image generation services provided by Pollinations AI.
 
+![Generator](screenshots/generator_1.png)
+
+![Generator](screenshots/generator_2.png)
+
+![Generator](screenshots/generator_3.png)
+
+![Generator](screenshots/result_1.png)
+
+![Generator](screenshots/result_2.png)
+
+![Generator](screenshots/result_3.png)
+
 ## Installation
 
 To install the app on your device, download the latest APK from the [Releases](https://github.com/g-aggarwal/Pollinator/releases/) page and follow the instructions below:
