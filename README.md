@@ -50,4 +50,5 @@ Pollinator is licensed under the GNU General Public License v3.0. See the [LICEN
 ## Acknowledgments
 
 I would like to extend my sincere appreciation for the [Pollinations AI](https://github.com/pollinations) team!
+
 A special thanks to [Thomas Haferlach](https://github.com/voodoohop) for his support!
