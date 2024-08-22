@@ -1,3 +1,19 @@
+/*
+ * This file is part of Pollinator.
+ *
+ * Pollinator is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Pollinator is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Pollinator. If not, see <https://www.gnu.org/licenses/>.
+ */
 package com.gauravaggarwal.pollinator.ui.screens
 
 import android.content.ContentValues
@@ -60,13 +76,14 @@ class PollinatorViewModel(
 
     fun saveImage(context: Context) {
         if (_uiState.value.bitmap != null) {
-            val uri = saveBitmap(
+            saveBitmap(
                 context,
                 _uiState.value.bitmap!!,
                 Bitmap.CompressFormat.PNG,
                 "image/png",
                 "pollinator_${System.currentTimeMillis()}.png"
             )
+            // TODO : add save verification
             val text = context.getString(R.string.image_saved)
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(context, text, duration) // in Activity

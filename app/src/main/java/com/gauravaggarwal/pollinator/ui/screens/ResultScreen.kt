@@ -1,3 +1,19 @@
+/*
+ * This file is part of Pollinator.
+ *
+ * Pollinator is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Pollinator is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Pollinator. If not, see <https://www.gnu.org/licenses/>.
+ */
 package com.gauravaggarwal.pollinator.ui.screens
 
 import androidx.compose.foundation.Image
@@ -72,15 +88,14 @@ fun ResultScreen(pollinatorViewModel: PollinatorViewModel) {
 
             Row(
                 modifier = Modifier
-                    .padding(bottom = 32.dp),
+                    .padding(top = 32.dp, bottom = 16.dp, start = 8.dp, end = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Image(
                     painter = painterResource(R.drawable.button_download), // Replace with your save icon
                     contentDescription = stringResource(R.string.label_save),
                     modifier = Modifier
-                        .padding(16.dp)
-                        .size(48.dp)
+                        .size(36.dp)
                         .weight(1f)
                         .clickable { pollinatorViewModel.saveImage(context) } // Add the click action
                 )
@@ -89,8 +104,7 @@ fun ResultScreen(pollinatorViewModel: PollinatorViewModel) {
                     painter = painterResource(R.drawable.button_close), // Replace with your discard icon
                     contentDescription = stringResource(R.string.label_discard),
                     modifier = Modifier
-                        .padding(16.dp)
-                        .size(48.dp)
+                        .size(36.dp)
                         .weight(1f)
                         .clickable { pollinatorViewModel.closeDisplay() } // Add the click action
                 )
