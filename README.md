@@ -51,6 +51,7 @@ I would like to extend my sincere appreciation for the [Pollinations AI](https:/
 
 A special thanks to [Thomas Haferlach](https://github.com/voodoohop) for his support!
 
+![Generator](screenshots/generator_0. jpg) 
 ![Generator](screenshots/generator_1. jpg) 
 ![Generator](screenshots/generator_2.jpg)
 ![Generator](screenshots/generator_3.jpg)
