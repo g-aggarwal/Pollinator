@@ -1,5 +1,7 @@
 package com.gauravaggarwal.pollinator.ui.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,64 +12,60 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gauravaggarwal.pollinator.R
 
 @Composable
-fun ImageGeneratorScreen(
-    pollinatorViewModel: PollinatorViewModel,
-) {
+fun DisplayScreen(pollinatorViewModel: PollinatorViewModel) {
     val imageGeneratorUiState by pollinatorViewModel.uiState.collectAsState()
+    val bitmap = imageGeneratorUiState.bitmap!!
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
+            .background(Color.Black)
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.SpaceAround
         ) {
-            OutlinedTextField(
-                value = imageGeneratorUiState.prompt,
-                onValueChange = { pollinatorViewModel.onPromptChanged(it) },
-                label = { Text("Enter Prompt") },
-                minLines = 3,
-                modifier = Modifier
-                    .fillMaxWidth()
+            Image(
+                bitmap = bitmap.asImageBitmap(),
+                contentDescription = stringResource(R.string.description_generated_image),
+                modifier = Modifier.fillMaxWidth()
             )
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .padding(start = 16.dp, end = 16.dp, bottom = 48.dp),
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 Button(
-                    onClick = { pollinatorViewModel.generateImage() },
+                    onClick = { pollinatorViewModel.saveImage(context) },
                     shape = RoundedCornerShape(4.dp),
-                    enabled = imageGeneratorUiState.prompt.trim().isNotBlank(),
                     modifier = Modifier
                         .weight(1f)
-                        .height(48.dp)
+                        .height(60.dp)
                 ) {
-                    Text(stringResource(R.string.pollinate))
+                    Text(stringResource(R.string.label_save))
                 }
                 Button(
-                    onClick = { pollinatorViewModel.clearPrompt() },
+                    onClick = { pollinatorViewModel.closeDisplay() },
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .weight(1f)
-                        .height(48.dp)
+                        .height(60.dp)
                 ) {
-                    Text(stringResource(R.string.clear))
+                    Text(stringResource(R.string.label_discard))
                 }
             }
         }

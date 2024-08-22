@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Pollinator</string>
-    <string name="pollinate">Pollinate!</string>
-    <string name="clear">Clear</string>
+    <string name="label_pollinate">Pollinate!</string>
+    <string name="label_discard">Discard</string>
+    <string name="label_save">Save</string>
+    <string name="label_prompt">Prompt</string>
+    <string name="label_checkbox_private">Private</string>
+    <string name="label_model">Model</string>
+    <string name="label_aspect_ratio">Size</string>
+    <string name="label_advanced_options">Advanced Options</string>
+    <string name="label_seed">Seed</string>
+    <string name="description_generated_image">Generated Image</string>
+    <string name="image_saved">Saved to gallery!</string>
 </resources>
