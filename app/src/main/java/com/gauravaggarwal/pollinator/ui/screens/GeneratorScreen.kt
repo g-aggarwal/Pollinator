@@ -1,5 +1,6 @@
 package com.gauravaggarwal.pollinator.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,9 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,12 +32,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.gauravaggarwal.pollinator.R
+import com.gauravaggarwal.pollinator.data.PollinationsAiRepository
 
 private const val CHARACTER_LIMIT = 400
 
@@ -43,6 +50,7 @@ fun PollinatorScreen(
 ) {
     val imageGeneratorUiState by pollinatorViewModel.uiState.collectAsState()
     var showAdvancedOptions by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
     val focusManager = LocalFocusManager.current
 
     Box(
@@ -54,9 +62,18 @@ fun PollinatorScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Image(
+                painter = painterResource(R.drawable.bee_white_no_bg),
+                contentDescription = stringResource(R.string.app_logo),
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(64.dp)
+            )
             OutlinedTextField(
                 value = imageGeneratorUiState.prompt,
                 onValueChange = { newValue ->
@@ -82,12 +99,14 @@ fun PollinatorScreen(
             Text(
                 text = stringResource(R.string.label_advanced_options),
                 color = Color.White,
-                fontSize = MaterialTheme.typography.labelMedium.fontSize,
-                textAlign = TextAlign.End,
+                fontSize = MaterialTheme.typography.labelLarge.fontSize,
+                textAlign = TextAlign.Start,
                 modifier = Modifier
                     .padding(horizontal = 4.dp, vertical = 8.dp)
                     .fillMaxWidth()
-                    .clickable { showAdvancedOptions = !showAdvancedOptions }
+                    .clickable {
+                        showAdvancedOptions = !showAdvancedOptions; focusManager.clearFocus()
+                    }
             )
 
             if (showAdvancedOptions) {
@@ -108,7 +127,6 @@ fun PollinatorScreen(
                     .isNotBlank(),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp)
                     .height(60.dp)
             ) {
                 Text(stringResource(R.string.label_pollinate))
@@ -137,16 +155,22 @@ fun PollinatorScreen(
                                         pollinatorViewModel.resetError()
                                     }
                                 ) {
-                                    Text("OK")
+                                    Text("X")
                                 }
                             }
                         )
                     }
                 }
                 imageGeneratorUiState.bitmap != null -> {
-                    DisplayScreen(pollinatorViewModel)
+                    ResultScreen(pollinatorViewModel)
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PollinatorScreenPreview() {
+    PollinatorScreen(PollinatorViewModel(PollinationsAiRepository()))
 }

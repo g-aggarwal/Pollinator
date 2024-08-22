@@ -1,6 +1,6 @@
 package com.gauravaggarwal.pollinator.model
 
-data class Model(val displayName: String, val value: String, )
+data class Model(val displayName: String, val value: String)
 
 class Models {
     companion object {
@@ -18,7 +18,7 @@ class Models {
             return models
         }
 
-        fun getDefault(): Model {
+        fun getDefaultModel(): Model {
             return DEFAULT
         }
     }

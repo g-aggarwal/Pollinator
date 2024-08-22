@@ -26,7 +26,7 @@ class PollinationsAiRepository : GenerationRepository {
         if (generationParameters.seed != null) {
             urlBuilder.append("&seed=").append(generationParameters.seed)
         }
-        if (generationParameters.model != Models.getDefault().value) {
+        if (generationParameters.model != Models.getDefaultModel().value) {
             urlBuilder.append("&model=").append(urlEncode(generationParameters.model))
         }
         if (generationParameters.noLogo != GenerationParameters.DEFAULT_NO_LOGO) {
