@@ -3,6 +3,7 @@ package com.gauravaggarwal.pollinator.model
 private const val DEFAULT = 1024
 private val sizes = listOf(
     512,
+    640,
     720,
     768,
     1024,
