@@ -39,8 +39,7 @@ Pollinator uses the following dependencies:
 
 - **AndroidX**: Core libraries for Android development.
 - **Jetpack Compose**: For building the user interface.
-- - **Material3**: For modern UI components.
-- **Kotlin Serialization**: For JSON serialization.
+- **Material3**: For modern UI components.
 - **OkHttp**: For network requests.
 
 ## License
