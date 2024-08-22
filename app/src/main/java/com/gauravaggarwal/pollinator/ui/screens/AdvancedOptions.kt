@@ -35,7 +35,6 @@ import com.gauravaggarwal.pollinator.R
 import com.gauravaggarwal.pollinator.data.PollinationsAiRepository
 import com.gauravaggarwal.pollinator.model.Model
 import com.gauravaggarwal.pollinator.model.Models
-import com.gauravaggarwal.pollinator.model.Size
 import com.gauravaggarwal.pollinator.model.Sizes
 
 @Composable
@@ -57,11 +56,20 @@ fun AdvancedOptions(
         )
 
         // Size Selection
-        SizeDropdown(
-            selectedSize = imageGeneratorUiState.size,
-            onAspectRatioSelected = { pollinatorViewModel.onAspectRatioChanged(it) },
-            label = stringResource(R.string.label_aspect_ratio)
-        )
+        Row {
+            SizeDropdown(
+                modifier.weight(1f).padding(horizontal = 4.dp),
+                selectedSize = imageGeneratorUiState.width,
+                onSizeSelected = { pollinatorViewModel.onWidthChanged(it) },
+                label = stringResource(R.string.label_width)
+            )
+            SizeDropdown(
+                modifier.weight(1f),
+                selectedSize = imageGeneratorUiState.height,
+                onSizeSelected = { pollinatorViewModel.onHeightChanged(it) },
+                label = stringResource(R.string.label_height)
+            )
+        }
 
         SeedTextField(
             value = imageGeneratorUiState.seed?.toString() ?: "",
@@ -85,7 +93,7 @@ fun AdvancedOptions(
                     checked = imageGeneratorUiState.noLogo,
                     onCheckedChange = { pollinatorViewModel.onNoLogoChanged(it) }
                 )
-                Text(text = "No Logo")
+                Text(text = stringResource(R.string.label_no_logo))
             }
             // Private Checkbox
             Row(
@@ -101,6 +109,7 @@ fun AdvancedOptions(
     }
 }
 
+// TODO : Move out and reuse
 @Composable
 fun ModelDropdown(
     modifier: Modifier = Modifier,
@@ -159,11 +168,12 @@ fun ModelDropdown(
     }
 }
 
+// TODO : Move out and reuse
 @Composable
 fun SizeDropdown(
     modifier: Modifier = Modifier,
-    selectedSize: Size,
-    onAspectRatioSelected: (Size) -> Unit,
+    selectedSize: Int,
+    onSizeSelected: (Int) -> Unit,
     label: String
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -186,10 +196,10 @@ fun SizeDropdown(
                     Color.LightGray,
                     shape = MaterialTheme.shapes.extraSmall
                 )
-                .padding(16.dp)
+                .padding(vertical = 16.dp)
         ) {
             Text(
-                text =  Sizes.getDisplayString(selectedSize),
+                text =  selectedSize.toString(),
                 modifier = Modifier.align(Alignment.Center)
             )
             DropdownMenu(
@@ -202,12 +212,12 @@ fun SizeDropdown(
                 sizes.forEach { size ->
                     DropdownMenuItem(
                         text = { Text(
-                                text = Sizes.getDisplayString(size),
+                                text = size.toString(),
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center
                             ) },
                         onClick = {
-                            onAspectRatioSelected(size)
+                            onSizeSelected(size)
                             expanded = false
                         }
                     )

@@ -11,10 +11,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gauravaggarwal.pollinator.R
 import com.gauravaggarwal.pollinator.data.GenerationRepository
-import com.gauravaggarwal.pollinator.model.GenerationResult
-import com.gauravaggarwal.pollinator.model.Size
-import com.gauravaggarwal.pollinator.model.Model
 import com.gauravaggarwal.pollinator.model.GenerationParameters
+import com.gauravaggarwal.pollinator.model.GenerationResult
+import com.gauravaggarwal.pollinator.model.Model
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -96,7 +95,7 @@ class PollinatorViewModel(
                 }
                 is GenerationResult.RequestError -> {
                     // Handle request error
-                    handleError("Request error occurred Code: ${result.code} Message: ${result.message}")
+                    handleError("Request error occurred Code:" + " ${result.code} : ${result.message}")
                 }
                 is GenerationResult.InvalidResponseError -> {
                     // Handle invalid response
@@ -117,8 +116,8 @@ class PollinatorViewModel(
     private fun getParameters(): GenerationParameters {
         return GenerationParameters(
             prompt = _uiState.value.prompt,
-            width = _uiState.value.size.width,
-            height = _uiState.value.size.height,
+            width = _uiState.value.width,
+            height = _uiState.value.height,
             model = _uiState.value.model.value,
             noLogo = _uiState.value.noLogo,
             private = _uiState.value.noFeed,
@@ -194,13 +193,23 @@ class PollinatorViewModel(
         }
     }
 
-    fun onAspectRatioChanged(size: Size) {
+    fun onWidthChanged(width: Int) {
         _uiState.update { currentState ->
             currentState.copy(
-                size = size,
+                width = width,
             )
         }
     }
+
+    fun onHeightChanged(height: Int) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                height = height,
+            )
+        }
+    }
+
+
 
     fun onSeedChanged(seed: Int?) {
         _uiState.update { currentState ->

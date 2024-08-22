@@ -4,11 +4,15 @@
     <string name="label_discard">Discard</string>
     <string name="label_save">Save</string>
     <string name="label_prompt">Prompt</string>
-    <string name="label_checkbox_private">Private</string>
-    <string name="label_model">Model</string>
-    <string name="label_aspect_ratio">Size</string>
     <string name="label_advanced_options">Advanced Options</string>
+    <string name="label_model">Model</string>
+    <string name="label_width">Width</string>
+    <string name="label_height">Height</string>
     <string name="label_seed">Seed</string>
+    <string name="label_no_logo">No Logo</string>
+    <string name="label_checkbox_private">Private</string>
     <string name="description_generated_image">Generated Image</string>
     <string name="image_saved">Saved to gallery!</string>
+    <string name="no_image_found">No image found!</string>
+    <string name="app_logo">App Logo</string>
 </resources>

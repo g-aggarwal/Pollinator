@@ -1,18 +1,17 @@
 package com.gauravaggarwal.pollinator.ui.screens
 
 import android.graphics.Bitmap
-import com.gauravaggarwal.pollinator.model.Size
-import com.gauravaggarwal.pollinator.model.Sizes
 import com.gauravaggarwal.pollinator.model.Model
 import com.gauravaggarwal.pollinator.model.Models
+import com.gauravaggarwal.pollinator.model.Sizes
 
 data class PollinatorUiState(
     val prompt: String = "",
     val bitmap: Bitmap? = null,
-    val areAdvancedOptionsVisible: Boolean = false,
     val seed: Int? = null,
-    val model: Model = Models.getDefault(),
-    val size: Size = Sizes.getDefault(),
+    val model: Model = Models.getDefaultModel(),
+    val width: Int = Sizes.getDefaultSize(),
+    val height: Int = Sizes.getDefaultSize(),
     val noLogo: Boolean = false,
     val noFeed: Boolean = false,
     val isLoading: Boolean = false,

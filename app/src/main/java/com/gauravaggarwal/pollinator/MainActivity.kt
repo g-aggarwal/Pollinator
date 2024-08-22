@@ -42,7 +42,7 @@ fun PollinatorTheme(content: @Composable () -> Unit) {
         onPrimary = Color.Black,
     )
 
-    CompositionLocalProvider() {
+    CompositionLocalProvider {
         MaterialTheme(
             colorScheme = customColors,
             content = content
