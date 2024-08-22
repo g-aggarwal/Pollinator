@@ -1,34 +1,25 @@
 package com.gauravaggarwal.pollinator.model
 
+data class Model(val displayName: String, val value: String, )
+
 class Models {
     companion object {
-        const val DEFAULT = "turbo"
-        private const val TURBO = "turbo"
-        private const val DREAMSHAPER = "dreamshaper"
-        private const val DELIBERATE = "deliberate"
-        private const val PIXART = "pixart"
-        private const val PLAYGROUND = "playground"
-        private const val DPO = "dpo"
-        private const val DALLE3XL = "dalle3xl"
-        private const val FORMULAXL = "formulaxl"
+        private val DEFAULT =  Model("Default", "default" )
+        private val TURBO =  Model("Turbo", "turbo")
+        private val FLUX =  Model("Flux", "flux")
 
-        private val displayStrings = mapOf(
-            TURBO to "Turbo Model",
-            DREAMSHAPER to "Dreamshaper Model",
-            DELIBERATE to "Deliberate Model",
-            PIXART to "Pixart Model",
-            PLAYGROUND to "Playground Model",
-            DPO to "DPO Model",
-            DALLE3XL to "DALL·E 3XL Model",
-            FORMULAXL to "Formula XL Model"
+        private val models = listOf(
+            DEFAULT,
+            TURBO,
+            FLUX
         )
 
-        fun getModels(): List<String> {
-            return displayStrings.keys.toList()
+        fun getModelList(): List<Model> {
+            return models
         }
 
-        fun getDisplayString(model: String): String? {
-            return displayStrings[model]
+        fun getDefault(): Model {
+            return DEFAULT
         }
     }
 }
