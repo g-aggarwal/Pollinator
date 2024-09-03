@@ -1,6 +1,6 @@
 # Pollinator
 
-**Pollinator** is a free Android application that utilizes [Pollinations AI](https://pollinations.ai)'s endpoint to generate pixel perfect AI images. The app is built with Jetpack Compose and Kotlin, offering a seamless and modern Andorid experience. The project is designed to be flexible and customizable, making it easy to integrate with other AI-driven services in the future.
+**Pollinator** is an open-source Android application designed to transform text prompts into visually striking AI-generated images. Leveraging the capabilities of [Pollinations AI](https://pollinations.ai), the app offers users the ability to create unique and captivating images in just seconds. Built with Jetpack Compose and Kotlin, Pollinator provides a seamless and intuitive user experience, with a modern design that ensures ease of use. The app’s flexible architecture is designed to accommodate future integrations with other AI-driven services, making it a powerful tool for anyone interested in exploring the creative potential of generative AI.
 
 ### Beta Status
 
